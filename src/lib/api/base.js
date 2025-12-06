@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://eduflex-api.ioconnect.io/api'
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://eduflex-api.ioconnect.ai/api'
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -12,7 +12,7 @@ const apiClient = axios.create({
 // Request interceptor to add auth token
 apiClient.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('access_token')
+    const token = localStorage.getItem('accessToken')
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
     }
@@ -32,19 +32,19 @@ apiClient.interceptors.response.use(
       originalRequest._retry = true
       
       try {
-        const refreshToken = localStorage.getItem('refresh_token')
+        const refreshToken = localStorage.getItem('refreshToken')
         const response = await axios.post(`${API_BASE_URL}/auth/refresh`, {
           refreshToken,
         })
         
         const { accessToken } = response.data
-        localStorage.setItem('access_token', accessToken)
+        localStorage.setItem('accessToken', accessToken)
         
         originalRequest.headers.Authorization = `Bearer ${accessToken}`
         return apiClient(originalRequest)
       } catch (refreshError) {
-        localStorage.removeItem('access_token')
-        localStorage.removeItem('refresh_token')
+        localStorage.removeItem('accessToken')
+        localStorage.removeItem('refreshToken')
         window.location.href = '/login'
         return Promise.reject(refreshError)
       }

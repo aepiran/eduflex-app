@@ -1,8 +1,10 @@
+// src/components/layout/Footer.tsx
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white mt-auto">
-      <div className="container mx-auto px-4 py-8">
+    <footer className="bg-gray-900 text-white">
+      <div className="container py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Company Info */}
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <div className="bg-primary-600 text-white p-2 rounded-lg">
@@ -12,37 +14,87 @@ export default function Footer() {
               </div>
               <span className="text-2xl font-bold">EduFlex</span>
             </div>
-            <p className="text-gray-400">
+            <p className="text-gray-400 mb-6">
               Nền tảng học trực tuyến hàng đầu Việt Nam với chất lượng quốc tế.
             </p>
+            <div className="flex space-x-4">
+              {/* Social Media Icons */}
+              {['facebook', 'twitter', 'linkedin', 'youtube'].map((social) => (
+                <a key={social} href="#" className="text-gray-400 hover:text-white">
+                  {/* Add social icons */}
+                </a>
+              ))}
+            </div>
           </div>
-          
+
+          {/* Quick Links */}
           <div>
-            <h4 className="font-bold text-lg mb-4">Về EduFlex</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li><a href="/about" className="hover:text-white">Giới thiệu</a></li>
-              <li><a href="/contact" className="hover:text-white">Liên hệ</a></li>
+            <h4 className="font-bold text-lg mb-4">Liên kết nhanh</h4>
+            <ul className="space-y-3">
+              {[
+                { href: '/courses', label: 'Khóa học' },
+                { href: '/instructors', label: 'Giảng viên' },
+                { href: '/about', label: 'Về chúng tôi' },
+                { href: '/contact', label: 'Liên hệ' },
+                { href: '/blog', label: 'Blog' },
+              ].map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} className="text-gray-400 hover:text-white transition-colors">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
-          
+
+          {/* Support */}
           <div>
             <h4 className="font-bold text-lg mb-4">Hỗ trợ</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li><a href="#" className="hover:text-white">Trung tâm hỗ trợ</a></li>
-              <li><a href="#" className="hover:text-white">Câu hỏi thường gặp</a></li>
+            <ul className="space-y-3">
+              {[
+                { href: '/help', label: 'Trung tâm hỗ trợ' },
+                { href: '/faq', label: 'Câu hỏi thường gặp' },
+                { href: '/terms', label: 'Điều khoản sử dụng' },
+                { href: '/privacy', label: 'Chính sách bảo mật' },
+                { href: '/refund', label: 'Chính sách hoàn tiền' },
+              ].map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} className="text-gray-400 hover:text-white transition-colors">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
-          
+
+          {/* Newsletter */}
           <div>
-            <h4 className="font-bold text-lg mb-4">Kết nối</h4>
+            <h4 className="font-bold text-lg mb-4">Đăng ký nhận tin</h4>
             <p className="text-gray-400 mb-4">
-              Đăng ký nhận thông tin khóa học mới
+              Nhận thông tin về khóa học mới và ưu đãi đặc biệt.
             </p>
+            <form className="space-y-3">
+              <input
+                type="email"
+                placeholder="Email của bạn"
+                className="w-full px-4 py-2 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-500"
+              />
+              <button
+                type="submit"
+                className="w-full px-4 py-2 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-lg hover:opacity-90"
+              >
+                Đăng ký
+              </button>
+            </form>
           </div>
         </div>
-        
+
+        {/* Copyright */}
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>© 2024 EduFlex. Tất cả các quyền được bảo lưu.</p>
+          <p>© {new Date().getFullYear()} EduFlex. Tất cả các quyền được bảo lưu.</p>
+          <p className="mt-2 text-sm">
+            Địa chỉ: 123 Đường ABC, Phường Xuân Phương, TP. Hà Nội | Điện thoại: (028) 1234 5678
+          </p>
         </div>
       </div>
     </footer>
